@@ -1,0 +1,37 @@
+{
+  "0": {
+    "en": "No passing",
+    "vi": "Cấm con lái",
+    "description": "Biển báo cấm các xe cơ giới vượt"
+  },
+  "1": {
+    "en": "No stopping and parking",
+    "vi": "Cấm dừng và đỗ",
+    "description": "Biển báo cấm dừng xe và đỗ xe"
+  },
+  "2": {
+    "en": "No entry",
+    "vi": "Cấm ngược chiều",
+    "description": "Biển báo cấm đi ngược chiều"
+  },
+  "3": {
+    "en": "No turn",
+    "vi": "Cấm rẽ",
+    "description": "Biển báo cấm rẽ trái hoặc rẽ phải"
+  },
+  "4": {
+    "en": "Speed limit",
+    "vi": "Giới hạn tốc độ",
+    "description": "Biển báo giới hạn tốc độ tối đa"
+  },
+  "5": {
+    "en": "Mandatory",
+    "vi": "Hiệu lệnh",
+    "description": "Biển báo hiệu lệnh bắt buộc"
+  },
+  "6": {
+    "en": "Warning",
+    "vi": "Nguy hiểm",
+    "description": "Biển báo cảnh báo nguy hiểm"
+  }
+}

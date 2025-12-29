@@ -1,0 +1,50 @@
+classes:
+  names:
+    0: speed_limit_20
+    1: speed_limit_30
+    2: speed_limit_50
+    3: speed_limit_60
+    4: speed_limit_70
+    5: speed_limit_80
+    6: no_overtaking
+    7: no_entry
+    8: danger
+    9: mandatory_left
+    10: mandatory_right
+    11: mandatory_straight
+    12: stop
+    13: yield
+    14: priority_road
+model:
+  name: yolo11n.pt
+  pretrained: true
+paths:
+  dataset: data/processed
+  output: models/yolo11
+  test: data/processed/test
+  train: data/processed/train
+  val: data/processed/val
+training:
+  augmentation:
+    degrees: 0.0
+    fliplr: 0.5
+    flipud: 0.0
+    hsv_h: 0.015
+    hsv_s: 0.7
+    hsv_v: 0.4
+    mosaic: 1.0
+    perspective: 0.0
+    scale: 0.5
+    shear: 0.0
+    translate: 0.1
+  batch_size: 2
+  device: cpu
+  epochs: 100
+  img_size: 416
+  optimizer:
+    lr: 0.01
+    momentum: 0.937
+    name: SGD
+    weight_decay: 0.0005
+  patience: 50
+  workers: 8

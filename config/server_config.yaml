@@ -1,0 +1,29 @@
+cors:
+  allow_headers:
+  - '*'
+  allow_methods:
+  - '*'
+  allow_origins:
+  - '*'
+models:
+  cnn:
+    input_size:
+    - 224
+    - 224
+    path: models/cnn/classifier.h5
+  yolo:
+    confidence: 0.5
+    iou_threshold: 0.45
+    path: models/yolo11/train/weights/best.pt
+processing:
+  allowed_extensions:
+  - .jpg
+  - .jpeg
+  - .png
+  max_image_size: 5242880
+  output_format: json
+server:
+  debug: false
+  host: 0.0.0.0
+  port: 8000
+  reload: false
