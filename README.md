@@ -1,391 +1,83 @@
-# Traffic Sign Detection System
-**Hybrid YOLOv11 + CNN/ViT Architecture for Vietnamese Traffic Signs**
+🚦 Traffic Sign Detection using YOLOv11
+📌 Giới thiệu
 
-A comprehensive traffic sign detection and classification system using hybrid deep learning models:
-- **YOLOv11**: For traffic sign detection and localization
-- **CNN/TensorFlow/Keras 2.x**: For traffic sign classification  
-- **Vision Transformer (ViT)**: Advanced alternative classifier
-- **Vietnamese Dataset**: 4,803 images across 7 traffic sign classes
+Dự án Traffic Sign Detection được xây dựng nhằm mục tiêu nhận diện và phân loại biển báo giao thông trong môi trường thực tế tại Việt Nam.
+Hệ thống sử dụng YOLOv11 – mô hình học sâu hiện đại cho bài toán Object Detection, đảm bảo tốc độ nhanh, độ chính xác cao và khả năng triển khai thực tế.
 
-## 📋 Tính năng
+Dự án phù hợp cho:
 
-- ✅ Phát hiện biển báo trong ảnh sử dụng YOLOv8
-- ✅ Phân loại biển báo sử dụng CNN
-- ✅ Web interface trực quan
-- ✅ REST API cho integration
-- ✅ Hỗ trợ batch processing
-- ✅ Metrics và visualization
-- ✅ Docker support
+Đồ án học phần / khóa luận
 
-## 🏗️ Cấu trúc Project
+Nghiên cứu thị giác máy tính
 
-```
-traffic-sign-detection/
-├── config/                    # File cấu hình
-│   ├── server_config.yaml    # Cấu hình server
-│   └── yolo_config.yaml      # Cấu hình YOLO training
-├── data/                      # Dữ liệu
-│   ├── raw/                  # Dữ liệu gốc
-│   ├── processed/            # Dữ liệu đã xử lý
-│   └── annotations/          # Annotations
-├── models/                    # Models
-│   ├── yolo/                 # YOLOv8 models
-│   └── cnn/                  # CNN models
-├── src/                       # Source code
-│   ├── yolo_detector.py      # YOLO detector
-│   ├── cnn_classifier.py     # CNN classifier
-│   ├── data_preprocessing.py # Data preprocessing
-│   ├── training/             # Training scripts
-│   │   ├── train_yolo.py
-│   │   └── train_cnn.py
-│   └── utils/                # Utilities
-│       ├── metrics.py
-│       └── visualization.py
-├── server/                    # Web server
-│   ├── app.py                # FastAPI application
-│   ├── routes.py             # API routes
-│   └── config.py             # Server config
-├── templates/                 # HTML templates
-│   └── index.html
-├── static/                    # Static files
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── tests/                     # Tests
-│   ├── test_detector.py
-│   └── test_classifier.py
-├── notebooks/                 # Jupyter notebooks
-├── results/                   # Results
-│   ├── images/
-│   ├── metrics/
-│   └── reports/
-├── requirements.txt           # Dependencies
-├── setup.py                   # Setup script
-├── Dockerfile                # Docker configuration
-├── docker-compose.yml        # Docker compose
-└── README.md                 # Documentation
-```
+Ứng dụng giao thông thông minh (ITS)
 
-## 🚀 Cài đặt
+🎯 Mục tiêu đề tài
 
-### Yêu cầu
+Nhận diện các loại biển báo giao thông Việt Nam từ hình ảnh và video
 
-- Python 3.8+
-- CUDA (optional, cho GPU support)
-- Docker (optional)
+Huấn luyện mô hình YOLOv11 với dataset tùy chỉnh
 
-### Cài đặt thủ công
+Đánh giá hiệu năng mô hình (Precision, Recall, mAP)
 
-1. Clone repository:
-```bash
-git clone https://github.com/Joycee23/Traffic_Sign_Detection.git
-cd traffic-sign-detection
-```
+Sẵn sàng triển khai thực tế
 
-2. Tạo virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
-```
+🧠 Công nghệ sử dụng
 
-3. Cài đặt dependencies:
-```bash
+Python 3.9+
+
+YOLOv11 (Ultralytics)
+
+PyTorch
+
+OpenCV
+
+NumPy
+
+Matplotlib
+
+Docker (tùy chọn triển khai)
+
+📁 Cấu trúc thư mục
+Traffic_Sign_Detection/
+│
+├── data/                   # Dataset (images, labels)
+│   ├── train/
+│   ├── val/
+│   └── test/
+│
+├── models/                 # Trọng số mô hình
+│   └── best.pt
+│
+├── src/                    # Source code
+│   ├── train.py
+│   ├── detect.py
+│   ├── validate.py
+│   └── utils.py
+│
+├── advanced_training.py    # Pipeline huấn luyện nâng cao
+├── requirements.txt        # Thư viện cần thiết
+├── Dockerfile              # Cấu hình Docker
+└── README.md
+
+⚙️ Cài đặt môi trường
+1️⃣ Clone project
+git clone https://github.com/Lam99322/Traffic_Sign_Detection.git
+cd Traffic_Sign_Detection
+
+2️⃣ Cài đặt thư viện
 pip install -r requirements.txt
-pip install -r requirements-dev.txt
-```
 
-4. Cài đặt package:
-```bash
-pip install -e .
-```
+🚀 Huấn luyện mô hình
+Huấn luyện nhanh (50 epochs)
+python advanced_training.py
 
-### Cài đặt với Docker
 
-```bash
-docker-compose up -d
-```
+Hoặc huấn luyện thủ công:
 
-### Setup Project (Sau khi clone)
+python src/train.py
 
-Sau khi clone repository, chạy script setup để tạo cấu trúc thư mục:
+🔍 Kiểm tra & nhận diện
+python src/detect.py --source data/test
 
-```bash
-python setup_project.py
-```
-
-Script này sẽ:
-- Tạo các thư mục cần thiết
-- Tạo file cấu hình mẫu
-- Hướng dẫn các bước tiếp theo
-
-## 📊 Chuẩn bị dữ liệu
-
-### Cấu trúc dữ liệu
-
-Dữ liệu raw cần có cấu trúc:
-
-```
-data/raw/
-├── images/
-│   ├── image001.jpg
-│   ├── image002.jpg
-│   └── ...
-└── labels/
-    ├── image001.txt
-    ├── image002.txt
-    └── ...
-```
-
-**Lưu ý quan trọng**: Dataset được lưu trong thư mục `data/raw/archive/` và không được đẩy lên Git do kích thước lớn. Người dùng cần tự tải dataset và đặt vào đúng cấu trúc.
-
-### Tải dataset
-
-1. Tải dataset từ các nguồn công khai:
-   - [Vietnam Traffic Signs](https://www.kaggle.com/datasets/maitam/vietnamese-traffic-signs)
-   - [Roboflow Dataset](https://universe.roboflow.com/truong-a6rzc/bien-bao-giao-thong-viet-nam-zalo1/dataset/5)
-
-2. Đặt dataset vào thư mục `data/raw/archive/` với cấu trúc:
-   ```
-   data/raw/archive/
-   ├── images/
-   ├── labels/
-   ├── classes.txt
-   ├── classes_en.txt
-   └── classes_vie.txt
-   ```
-
-### Preprocessing
-
-```bash
-python src/data_preprocessing.py
-```
-
-Script này sẽ:
-- Chia dataset thành train/val/test (70%/15%/15%)
-- Tạo file data.yaml cho YOLO
-- Áp dụng augmentation (optional)
-- Tạo thư mục processed với cấu trúc YOLO
-
-## 🎯 Training
-
-### Train YOLO Model
-
-```bash
-python src/training/train_yolo.py
-```
-
-Cấu hình training trong `config/yolo_config.yaml`
-
-### Train CNN Model
-
-```bash
-python src/training/train_cnn.py
-```
-
-## 🌐 Chạy Web Server
-
-### Development mode
-
-```bash
-cd server
-python app.py
-```
-
-hoặc
-
-```bash
-uvicorn server.app:app --reload --host 0.0.0.0 --port 8000
-```
-
-### Production mode
-
-```bash
-uvicorn server.app:app --host 0.0.0.0 --port 8000 --workers 4
-```
-
-Truy cập: http://localhost:8000
-
-## 📡 API Endpoints
-
-### Health Check
-```
-GET /health
-```
-
-### Detect Traffic Signs
-```
-POST /api/detect
-Content-Type: multipart/form-data
-Body: file (image)
-```
-
-### Batch Detection
-```
-POST /api/detect_batch
-Content-Type: multipart/form-data
-Body: files[] (multiple images)
-```
-
-### Classify Sign
-```
-POST /api/classify
-Content-Type: multipart/form-data
-Body: file (cropped sign image)
-```
-
-### Get Classes
-```
-GET /api/classes
-```
-
-## 🧪 Testing
-
-```bash
-# Run all tests
-pytest tests/
-
-# Run specific test
-pytest tests/test_detector.py
-
-# Run with coverage
-pytest tests/ --cov=src --cov-report=html
-```
-
-## 📈 Các lớp biển báo
-
-Hệ thống hỗ trợ 15 loại biển báo:
-
-0. speed_limit_20
-1. speed_limit_30
-2. speed_limit_50
-3. speed_limit_60
-4. speed_limit_70
-5. speed_limit_80
-6. no_overtaking
-7. no_entry
-8. danger
-9. mandatory_left
-10. mandatory_right
-11. mandatory_straight
-12. stop
-13. yield
-14. priority_road
-
-## 🔧 Cấu hình
-
-### Server Configuration (config/server_config.yaml)
-
-```yaml
-server:
-  host: "0.0.0.0"
-  port: 8000
-  debug: false
-
-models:
-  yolo:
-    path: "models/yolo11/train/weights/best.pt"
-    confidence: 0.5
-  cnn:
-    path: "models/cnn/classifier.h5"
-```
-
-### YOLO Configuration (config/yolo_config.yaml)
-
-```yaml
-training:
-  epochs: 100
-  batch_size: 8
-  img_size: 640
-  device: "cuda"
-```
-
-## 📊 Metrics và Visualization
-
-```python
-from src.utils.metrics import MetricsCalculator
-from src.utils.visualization import Visualizer
-
-# Calculate metrics
-metrics = MetricsCalculator.calculate_metrics(y_true, y_pred, class_names)
-
-# Visualize results
-visualizer = Visualizer()
-visualizer.plot_confusion_matrix(y_true, y_pred, class_names)
-visualizer.plot_training_history(history)
-```
-
-## 🐳 Docker
-
-### Build image
-
-```bash
-docker build -t traffic-sign-detection .
-```
-
-### Run container
-
-```bash
-docker run -p 8000:8000 traffic-sign-detection
-```
-
-### Docker Compose
-
-```bash
-docker-compose up -d
-```
-
-## 📝 Logging
-
-Logs được lưu trong thư mục `logs/`:
-- Training logs
-- Inference logs
-- API access logs
-
-## 🤝 Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👥 Authors
-
-- Jerry Nguyễn - Initial work
-
-## 🙏 Acknowledgments
-
-- YOLOv8 by Ultralytics
-- TensorFlow
-- FastAPI
-- OpenCV
-
-## 📞 Contact
-
-- Email: tuannguyen211982@gmail.com
-- Project Link: https://github.com/Joycee23/Traffic_Sign_Detection
-## 🔄 Updates
-
-### Version 1.0.0
-- Initial release
-- YOLO detection
-- CNN classification
-- Web interface
-- REST API
-
-## 📚 References
-
-- [YOLOv8 Documentation](https://docs.ultralytics.com/)
-- [TensorFlow Documentation](https://www.tensorflow.org/)
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-=======
-# Traffic_Sign_Detection
- 8a1d2e40b782ed1556d730ac04207d48c659bc2f
-#   T r a f f i c _ S i g n _ D e t e c t i o n _ y o l o 1 1  
- #   T r a f f i c _ S i g n _ D e t e c t i o n _ y o l o 1 1  
- 
+📊 Đánh giá mô hình
